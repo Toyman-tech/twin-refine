@@ -51,7 +51,7 @@ export const CalibrationPanel: React.FC<CalibrationPanelProps> = ({
   const latestVariance = activeIteration ? activeIteration.variancePct : 2.8;
 
   return (
-    <div className="hmi-panel p-3 sm:p-5 mb-4 sm:mb-6 border-cyan-500/20">
+    <div className="hmi-panel p-3 sm:p-4 mb-3 sm:mb-4 border-cyan-500/20">
       {/* Panel Header */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between pb-3 mb-4 border-b border-slate-800 gap-3">
         <div className="flex items-center gap-2">

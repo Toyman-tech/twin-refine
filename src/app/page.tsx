@@ -128,81 +128,81 @@ export default function TwinRefineDashboard() {
   const [activeView, setActiveView] = useState<'overview' | 'controls' | 'calibration' | 'tea' | 'all'>('overview');
 
   return (
-    <main className="min-h-screen bg-[#070a12] text-slate-100 px-3 sm:px-6 py-4 sm:py-6 overflow-x-hidden">
-      <div className="w-full">
-        {/* Top Header & Navigation Bar */}
-        <Header
-          mode={mode}
-          setMode={setMode}
-          isCalibrated={isCalibrated}
-          onRunRecalibration={() => {
-            setCalibratedParams(BENCH_VALIDATED_TARGETS);
-            setIsCalibrated(true);
-          }}
-          onSelectPreset={handleSelectPreset}
-        />
+    <main className="h-screen w-screen bg-[#070a12] text-slate-100 p-2 sm:p-4 flex flex-col gap-2 overflow-hidden">
+      {/* Top Header & Navigation Bar */}
+      <Header
+        mode={mode}
+        setMode={setMode}
+        isCalibrated={isCalibrated}
+        onRunRecalibration={() => {
+          setCalibratedParams(BENCH_VALIDATED_TARGETS);
+          setIsCalibrated(true);
+        }}
+        onSelectPreset={handleSelectPreset}
+      />
 
-        {/* WORKSPACE VIEW SWITCHER TABS */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 p-2 rounded-xl bg-slate-900/80 border border-slate-800 font-mono text-xs">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <button
-              onClick={() => setActiveView('overview')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-all ${
-                activeView === 'overview'
-                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <span>📊 Overview & PFD</span>
-            </button>
-
-            <button
-              onClick={() => setActiveView('controls')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-all ${
-                activeView === 'controls'
-                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <span>⚙️ Process Controls</span>
-            </button>
-
-            <button
-              onClick={() => setActiveView('calibration')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-all ${
-                activeView === 'calibration'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <span>🧬 Digital Twin Calibration</span>
-            </button>
-
-            <button
-              onClick={() => setActiveView('tea')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-all ${
-                activeView === 'tea'
-                  ? 'bg-purple-600 text-white shadow-md shadow-purple-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <span>📈 Techno-Economics (TEA)</span>
-            </button>
-          </div>
-
+      {/* WORKSPACE VIEW SWITCHER TABS */}
+      <div className="flex-shrink-0 flex flex-wrap items-center justify-between gap-2 p-1.5 sm:p-2 rounded-xl bg-slate-900/90 border border-slate-800 font-mono text-xs">
+        <div className="flex flex-wrap items-center gap-1.5">
           <button
-            onClick={() => setActiveView('all')}
-            className={`px-3 py-2 rounded-lg font-medium transition-all ${
-              activeView === 'all'
-                ? 'bg-slate-800 text-cyan-300 border border-cyan-500/30'
-                : 'text-slate-400 hover:text-white'
+            onClick={() => setActiveView('overview')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold text-[11px] sm:text-xs transition-all ${
+              activeView === 'overview'
+                ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🌐 View All Panels
+            <span>📊 Overview & PFD</span>
+          </button>
+
+          <button
+            onClick={() => setActiveView('controls')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold text-[11px] sm:text-xs transition-all ${
+              activeView === 'controls'
+                ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <span>⚙️ Process Controls</span>
+          </button>
+
+          <button
+            onClick={() => setActiveView('calibration')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold text-[11px] sm:text-xs transition-all ${
+              activeView === 'calibration'
+                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <span>🧬 Digital Twin Calibration</span>
+          </button>
+
+          <button
+            onClick={() => setActiveView('tea')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold text-[11px] sm:text-xs transition-all ${
+              activeView === 'tea'
+                ? 'bg-purple-600 text-white shadow-md shadow-purple-500/20'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <span>📈 Techno-Economics (TEA)</span>
           </button>
         </div>
 
-        {/* CONDITIONAL OR FULL VIEW PANEL RENDERING */}
+        <button
+          onClick={() => setActiveView('all')}
+          className={`px-2.5 py-1.5 rounded-lg font-medium text-[11px] sm:text-xs transition-all ${
+            activeView === 'all'
+              ? 'bg-slate-800 text-cyan-300 border border-cyan-500/30'
+              : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          🌐 View All Panels
+        </button>
+      </div>
+
+      {/* DYNAMIC SCROLLABLE CONTENT VIEWPORT THAT FILLS SCREEN HEIGHT & WIDTH */}
+      <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-3">
         {(activeView === 'overview' || activeView === 'tea' || activeView === 'all') && (
           <ReadoutsPanel data={modelResults} />
         )}
@@ -244,25 +244,25 @@ export default function TwinRefineDashboard() {
             }}
           />
         )}
-
-        {/* Footer & Export Tools */}
-        <footer className="hmi-panel p-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
-          <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-cyan-400" />
-            <span>TwinRefine Biorefinery Decision-Support Platform &copy; 2026</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleExportJSON}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 transition-colors"
-            >
-              <Download className="w-3.5 h-3.5" />
-              Export Scenario Data (JSON)
-            </button>
-          </div>
-        </footer>
       </div>
+
+      {/* Footer & Export Tools */}
+      <footer className="hmi-panel p-2.5 sm:p-3 flex-shrink-0 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-slate-400">
+        <div className="flex items-center gap-2">
+          <Layers className="w-4 h-4 text-cyan-400" />
+          <span>TwinRefine Biorefinery Decision-Support Platform &copy; 2026</span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleExportJSON}
+            className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 transition-colors text-[11px]"
+          >
+            <Download className="w-3.5 h-3.5" />
+            Export Scenario Data (JSON)
+          </button>
+        </div>
+      </footer>
 
       {/* Equipment Sizing Equations Inspector Modal */}
       <EquipmentSizingModal

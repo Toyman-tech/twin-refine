@@ -20,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectPreset,
 }) => {
   return (
-    <header className="hmi-panel p-3 sm:p-4 mb-4 sm:mb-6 border-b border-cyan-500/20">
+    <header className="hmi-panel p-3 sm:p-4 mb-3 border-b border-cyan-500/20 flex-shrink-0">
       <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-3 sm:gap-4">
         {/* Brand & System Title */}
         <div className="flex items-start sm:items-center gap-3 w-full xl:w-auto">

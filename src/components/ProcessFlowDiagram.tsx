@@ -13,7 +13,7 @@ export const ProcessFlowDiagram: React.FC<PFDProps> = ({ data, onInspectUnit }) 
   const { reactor, clarifier, evaporator, dryer, solar, feedRateKgH } = data;
 
   return (
-    <div className="hmi-panel p-3 sm:p-5 mb-4 sm:mb-6 hmi-grid-bg relative overflow-hidden">
+    <div className="hmi-panel p-3 sm:p-4 mb-3 sm:mb-4 hmi-grid-bg relative overflow-hidden">
       {/* PFD Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 pb-3 border-b border-slate-800 gap-2 sm:gap-4">
         <div className="flex items-center gap-2">

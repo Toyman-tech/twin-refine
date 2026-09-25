@@ -12,7 +12,7 @@ export const ReadoutsPanel: React.FC<ReadoutsPanelProps> = ({ data }) => {
   const { tea, solar, reactor, clarifier, evaporator, dryer, feedRateKgH } = data;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 mb-4 sm:mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 mb-3 sm:mb-4">
       {/* CARD 1: MASS FLOW & PRODUCT OUTPUTS */}
       <div className="hmi-panel p-4 flex flex-col justify-between">
         <div>

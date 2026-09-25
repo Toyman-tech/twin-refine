@@ -53,7 +53,7 @@ export const InputPanel: React.FC<InputPanelProps> = ({
   const isCaseStudy = mode === 'case_study';
 
   return (
-    <div className="hmi-panel p-3 sm:p-5 mb-4 sm:mb-6">
+    <div className="hmi-panel p-3 sm:p-4 mb-3 sm:mb-4">
       {/* Panel Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 mb-4 border-b border-slate-800 gap-2">
         <div className="flex items-center gap-2">
