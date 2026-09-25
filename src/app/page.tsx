@@ -17,12 +17,13 @@ import { runPhysicsModel } from '@/lib/engine/physics';
 
 import { Header } from '@/components/Header';
 import { ProcessFlowDiagram } from '@/components/ProcessFlowDiagram';
+import { Biorefinery3DPlant } from '@/components/Biorefinery3DPlant';
 import { InputPanel } from '@/components/InputPanel';
 import { CalibrationPanel } from '@/components/CalibrationPanel';
 import { ReadoutsPanel } from '@/components/ReadoutsPanel';
 import { EquipmentSizingModal } from '@/components/EquipmentSizingModal';
 
-import { Download, FileText, Share2, Layers } from 'lucide-react';
+import { Download, FileText, Share2, Layers, Box } from 'lucide-react';
 
 export default function TwinRefineDashboard() {
   // 1. Operating Mode State (Case Study Mode locked cashew model vs General Mode)
@@ -125,7 +126,7 @@ export default function TwinRefineDashboard() {
   };
 
   // 8. Navigation Tab State to de-clutter dashboard layout
-  const [activeView, setActiveView] = useState<'overview' | 'controls' | 'calibration' | 'tea' | 'all'>('overview');
+  const [activeView, setActiveView] = useState<'overview' | '3d' | 'controls' | 'calibration' | 'tea' | 'all'>('3d');
 
   return (
     <main className="h-screen w-screen bg-[#070a12] text-slate-100 p-2 sm:p-4 flex flex-col gap-2 overflow-hidden">
@@ -145,6 +146,17 @@ export default function TwinRefineDashboard() {
       <div className="flex-shrink-0 flex flex-wrap items-center justify-between gap-2 p-1.5 sm:p-2 rounded-xl bg-slate-900/90 border border-slate-800 font-mono text-xs">
         <div className="flex flex-wrap items-center gap-1.5">
           <button
+            onClick={() => setActiveView('3d')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold text-[11px] sm:text-xs transition-all ${
+              activeView === '3d'
+                ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <span>🧊 3D Plant Model</span>
+          </button>
+
+          <button
             onClick={() => setActiveView('overview')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold text-[11px] sm:text-xs transition-all ${
               activeView === 'overview'
@@ -152,7 +164,7 @@ export default function TwinRefineDashboard() {
                 : 'text-slate-400 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <span>📊 Overview & PFD</span>
+            <span>📊 2D PFD & Telemetry</span>
           </button>
 
           <button
@@ -203,8 +215,15 @@ export default function TwinRefineDashboard() {
 
       {/* DYNAMIC SCROLLABLE CONTENT VIEWPORT THAT FILLS SCREEN HEIGHT & WIDTH */}
       <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-3">
-        {(activeView === 'overview' || activeView === 'tea' || activeView === 'all') && (
+        {(activeView === '3d' || activeView === 'overview' || activeView === 'tea' || activeView === 'all') && (
           <ReadoutsPanel data={modelResults} />
+        )}
+
+        {(activeView === '3d' || activeView === 'all') && (
+          <Biorefinery3DPlant
+            data={modelResults}
+            onInspectUnit={(unitId) => setInspectedUnit(unitId)}
+          />
         )}
 
         {(activeView === 'overview' || activeView === 'all') && (
